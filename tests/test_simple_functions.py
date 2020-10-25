@@ -1,6 +1,7 @@
 import pytest
+import numpy as np
 
-from simple_functions import my_sum, factorial
+from simple_functions import my_sum, factorial, trig_function
 
 class TestSimpleFunctions(object):
     '''Class to test our simple functions are working correctly'''
@@ -22,4 +23,14 @@ class TestSimpleFunctions(object):
     def test_factorial(self, number, expected):
         '''Test our factorial function'''
         answer = factorial(number)
+        assert answer == expected
+
+    @pytest.mark.parametrize('number, expected', [
+        (8, 0.989),
+        (12, -0.537),
+        (25, -0.132)
+    ])
+    def test_trig_function(self, number, expected):
+        '''Test our factorial function'''
+        answer = round(np.sin(number), 3)
         assert answer == expected
